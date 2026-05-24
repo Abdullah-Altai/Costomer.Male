@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>King Barber Customer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="mobile-app">
+
+    <header class="app-header">
+      <div>
+        <span class="badge">Customer App</span>
+        <h1>King Barber</h1>
+        <p id="headerSubtitle">احجز موعدك بسهولة وبدون انتظار</p>
+      </div>
+      <button class="icon-btn" id="themeToggle">🌙</button>
+    </header>
+
+    <section class="search-box">
+      <input type="search" id="searchInput" placeholder="ابحث عن محل، حلاق، منطقة..." />
+      <button id="searchBtn">بحث</button>
+    </section>
+
+    <section class="category-switch">
+      <button class="category-btn active" data-category="all">الكل</button>
+      <button class="category-btn" data-category="male">صالونات رجالية</button>
+      <button class="category-btn" data-category="female">صالونات نسائية</button>
+      <button class="category-btn" data-category="unisex">Unisex</button>
+    </section>
+
+    <nav class="bottom-tabs">
+      <button class="tab active" data-page="home">الرئيسية</button>
+      <button class="tab" data-page="booking">الحجز</button>
+      <button class="tab" data-page="myBookings">حجوزاتي</button>
+      <button class="tab" data-page="favorites">المفضلة</button>
+      <button class="tab" data-page="settings">الإعدادات</button>
+    </nav>
+
+    <main>
+
+      <section class="page active" id="homePage">
+
+        <div class="hero-card">
+          <h2>احجز موعدك الآن</h2>
+          <p>اختر المحل، الحلاق، الخدمة، والوقت المناسب إلك.</p>
+          <div class="hero-actions">
+            <button class="primary-btn" id="goBookingBtn">ابدأ الحجز</button>
+            <button class="secondary-btn" data-page-link="notifications">الإشعارات</button>
+          </div>
+        </div>
+
+        <div class="quick-grid">
+          <button data-page-link="booking">✂️<span>حجز سريع</span></button>
+          <button data-page-link="shops">🏪<span>المحلات</span></button>
+          <button data-page-link="barbers">💈<span>الحلاقين</span></button>
+          <button data-page-link="offers">🔥<span>العروض</span></button>
+        </div>
+
+        <h2 class="section-title">العروض الحالية</h2>
+        <div class="horizontal-list" id="offersList">
+          <article class="offer-card" data-offer-service="VIP Package">
+            <h3>عرض VIP</h3>
+            <p>قص شعر + لحية + تنظيف</p>
+            <span>25,000 د.ع</span>
+            <button class="offer-book-btn">احجز العرض</button>
+          </article>
+
+          <article class="offer-card" data-offer-service="قص شعر">
+            <h3>عرض الطالب</h3>
+            <p>خصم خاص للطلاب</p>
+            <span>8,000 د.ع</span>
+            <button class="offer-book-btn">احجز العرض</button>
+          </article>
+        </div>
+
+        <h2 class="section-title">المحلات المتوفرة</h2>
+        <div class="horizontal-list" id="shopsList"></div>
+
+        <h2 class="section-title">أفضل الحلاقين</h2>
+        <div class="horizontal-list" id="barbersList"></div>
+      </section>
+
+      <section class="page" id="shopsPage">
+        <div class="row">
+          <h2 class="section-title">كل المحلات</h2>
+          <button class="small-btn" data-page-link="home">رجوع</button>
+        </div>
+
+        <div class="filter-row">
+          <button class="filter-btn active" data-shop-filter="all">الكل</button>
+          <button class="filter-btn" data-shop-filter="open">مفتوح</button>
+          <button class="filter-btn" data-shop-filter="high">الأعلى تقييماً</button>
+          <button class="filter-btn" data-shop-filter="near">الأقرب</button>
+        </div>
+
+        <div class="vertical-list" id="allShopsList"></div>
+      </section>
+
+      <section class="page" id="shopDetailsPage">
+        <div class="row">
+          <h2 class="section-title">تفاصيل المحل</h2>
+          <button class="small-btn" data-page-link="shops">رجوع</button>
+        </div>
+
+        <div id="shopDetailsBox"></div>
+
+        <h2 class="section-title">حلاقين هذا المحل</h2>
+        <div class="vertical-list" id="shopBarbersList"></div>
+
+        <h2 class="section-title">الخدمات</h2>
+        <div class="vertical-list" id="shopServicesList"></div>
+      </section>
+
+      <section class="page" id="barbersPage">
+        <div class="row">
+          <h2 class="section-title">كل الحلاقين</h2>
+          <button class="small-btn" data-page-link="home">رجوع</button>
+        </div>
+
+        <div class="filter-row">
+          <button class="filter-btn active" data-barber-filter="all">الكل</button>
+          <button class="filter-btn" data-barber-filter="available">متوفر</button>
+          <button class="filter-btn" data-barber-filter="busy">مشغول</button>
+          <button class="filter-btn" data-barber-filter="top">الأعلى</button>
+        </div>
+
+        <div class="vertical-list" id="allBarbersList"></div>
+      </section>
+
+      <section class="page" id="barberDetailsPage">
+        <div class="row">
+          <h2 class="section-title">تفاصيل الحلاق</h2>
+          <button class="small-btn" data-page-link="barbers">رجوع</button>
+        </div>
+
+        <div id="barberDetailsBox"></div>
+
+        <h2 class="section-title">الأوقات المتاحة</h2>
+        <div class="time-grid" id="barberTimesBox"></div>
+
+        <h2 class="section-title">التقييمات</h2>
+        <div class="vertical-list" id="barberReviewsBox"></div>
+      </section>
+
+      <section class="page" id="offersPage">
+        <div class="row">
+          <h2 class="section-title">كل العروض</h2>
+          <button class="small-btn" data-page-link="home">رجوع</button>
+        </div>
+
+        <div class="vertical-list">
+          <article class="offer-card wide">
+            <h3>VIP Full Package</h3>
+            <p>قص شعر + لحية + تنظيف وجه</p>
+            <span>25,000 د.ع</span>
+            <button class="offer-book-btn">احجز العرض</button>
+          </article>
+          <article class="offer-card wide">
+            <h3>Student Offer</h3>
+            <p>خصم خاص للطلاب</p>
+            <span>8,000 د.ع</span>
+            <button class="offer-book-btn">احجز العرض</button>
+          </article>
+          <article class="offer-card wide">
+            <h3>Weekend Offer</h3>
+            <p>حلاقة + ستايل نهاية الأسبوع</p>
+            <span>15,000 د.ع</span>
+            <button class="offer-book-btn">احجز العرض</button>
+          </article>
+        </div>
+      </section>
+
+      <section class="page" id="bookingPage">
+        <h2 class="section-title">إنشاء حجز جديد</h2>
+
+        <div class="form-card">
+          <label>اختر المحل</label>
+          <select id="shopSelect"></select>
+        </div>
+
+        <div class="form-card">
+          <label>اختر الحلاق</label>
+          <select id="barberSelect"></select>
+        </div>
+
+        <div class="form-card">
+          <label>اختر الخدمة</label>
+          <select id="serviceSelect"></select>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-card">
+            <label>التاريخ</label>
+            <input type="date" id="bookingDate" />
+          </div>
+
+          <div class="form-card">
+            <label>الوقت</label>
+            <select id="bookingTime"></select>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <label>نوع الحجز</label>
+          <div class="booking-type">
+            <button class="type-btn active" data-type="manual">يدوي</button>
+            <button class="type-btn" data-type="auto">تلقائي</button>
+          </div>
+        </div>
+
+        <div class="summary-card" id="bookingSummary"></div>
+
+        <div class="wait-card">
+          <h3>الانتظار المتوقع</h3>
+          <p id="expectedWait">20 دقيقة تقريباً</p>
+        </div>
+
+        <button class="primary-btn full" id="confirmBookingBtn">تأكيد الحجز</button>
+      </section>
+
+      <section class="page" id="myBookingsPage">
+        <div class="row">
+          <h2 class="section-title">حجوزاتي</h2>
+          <button class="small-btn" id="filterBookingsBtn">فلترة</button>
+        </div>
+
+        <div class="filter-row" id="bookingFilters">
+          <button class="filter-btn active" data-booking-filter="all">الكل</button>
+          <button class="filter-btn" data-booking-filter="pending">منتظر</button>
+          <button class="filter-btn" data-booking-filter="accepted">مقبول</button>
+          <button class="filter-btn" data-booking-filter="completed">مكتمل</button>
+          <button class="filter-btn" data-booking-filter="canceled">ملغي</button>
+        </div>
+
+        <div id="bookingsList"></div>
+      </section>
+
+      <section class="page" id="favoritesPage">
+        <h2 class="section-title">المفضلة</h2>
+        <div id="favoritesList"></div>
+      </section>
+
+      <section class="page" id="notificationsPage">
+        <div class="row">
+          <h2 class="section-title">الإشعارات</h2>
+          <button class="small-btn" id="clearNotificationsBtn">مسح</button>
+        </div>
+
+        <div id="notificationsList"></div>
+      </section>
+
+      <section class="page" id="reviewPage">
+        <div class="row">
+          <h2 class="section-title">تقييم الحجز</h2>
+          <button class="small-btn" data-page-link="myBookings">رجوع</button>
+        </div>
+
+        <div class="form-card">
+          <label>التقييم</label>
+          <div class="stars" id="starsBox">
+            <button data-star="1">★</button>
+            <button data-star="2">★</button>
+            <button data-star="3">★</button>
+            <button data-star="4">★</button>
+            <button data-star="5">★</button>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <label>تعليقك</label>
+          <textarea id="reviewText" placeholder="اكتب رأيك بالحلاق أو المحل..."></textarea>
+        </div>
+
+        <button class="primary-btn full" id="submitReviewBtn">إرسال التقييم</button>
+      </section>
+
+      <section class="page" id="settingsPage">
+        <h2 class="section-title">الإعدادات</h2>
+
+        <div class="profile-card">
+          <div class="profile-avatar">👤</div>
+          <h3>معلومات الزبون</h3>
+          <p>هذه البيانات راح تستخدم بالحجز.</p>
+        </div>
+
+        <div class="form-card">
+          <label>الاسم</label>
+          <input type="text" id="customerName" placeholder="اسمك الكامل" />
+        </div>
+
+        <div class="form-card">
+          <label>رقم الهاتف</label>
+          <input type="tel" id="customerPhone" placeholder="07xxxxxxxxx" />
+        </div>
+
+        <div class="form-card">
+          <label>اللغة</label>
+          <select id="languageSelect">
+            <option value="ar">العربية</option>
+            <option value="en">English</option>
+            <option value="ku">کوردی سورانی</option>
+          </select>
+        </div>
+
+        <div class="form-card">
+          <label>الثيم</label>
+          <select id="themeSelect">
+            <option value="male">وضع رجالي</option>
+            <option value="lolocati">وضع لولوكاتي</option>
+          </select>
+        </div>
+
+        <div class="form-card">
+          <label>الإشعارات</label>
+          <div class="booking-type">
+            <button class="type-btn active" data-notification="on">تشغيل</button>
+            <button class="type-btn" data-notification="off">إيقاف</button>
+          </div>
+        </div>
+
+        <button class="primary-btn full" id="saveSettingsBtn">حفظ الإعدادات</button>
+        <button class="danger-btn full" id="logoutPreviewBtn">تسجيل خروج</button>
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+Manual time input removed. Time is selected only from the top dropdown.
